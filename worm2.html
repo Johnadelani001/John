@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moving Snake</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: grey;
+            overflow: hidden;
+        }
+        .segment {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            border-radius: 10px;
+            box-shadow: 0 0 10px white;
+            transition: transform 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="snake"></div>
+
+    <script>
+        const snakeSegments = [];
+        const snakeLength = 10; // Number of segments
+        const snakeContainer = document.getElementById('snake');
+
+        // Create initial snake segments
+        for (let i = 0; i < snakeLength; i++) {
+            const segment = document.createElement('div');
+            segment.classList.add('segment');
+            snakeContainer.appendChild(segment);
+            snakeSegments.push(segment);
+        }
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX - 10; // Center the segment
+            const y = event.clientY - 10;
+
+            // Move segments
+            for (let i = snakeLength - 1; i > 0; i--) {
+                snakeSegments[i].style.transform = snakeSegments[i - 1].style.transform;
+            }
+            snakeSegments[0].style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>

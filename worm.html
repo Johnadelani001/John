@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worm Following Cursor</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: grey;
+            overflow: hidden;
+        }
+        #worm {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: green;
+            border-radius: 10px;
+            box-shadow: 0 0 10px white;
+            transition: transform 0.1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="worm"></div>
+
+    <script>
+        const worm = document.getElementById('worm');
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX - worm.offsetWidth / 2;
+            const y = event.clientY - worm.offsetHeight / 2;
+            worm.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body>
+</html>
